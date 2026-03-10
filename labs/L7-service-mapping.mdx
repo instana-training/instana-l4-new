@@ -1,0 +1,76 @@
+---
+title: Lab7
+---
+export const Title = () => (
+  <span>
+    Lab 7 - Service Mapping <br />
+  </span>
+);
+;
+
+## Lab Overview
+
+Services are a part of application monitoring and provide a logical view of your system. Services are derived from infrastructure entities such as hosts, containers, and processes. In this lab you will learn to modify the ratings service of Robot Shop by changing its name from rs-ratings to rs-ratings-your last name. By the end of the lab, you should be able to find your service in your Application Perspective with its new name.
+
+## Step 1: 
+
+SSH into your host. 
+
+```
+ssh ubuntu@<IP address>
+```
+
+## Step 2: 
+Navigate to the robot-shop/ratings directory 
+
+```
+cd /home/ubuntu/robot-shop/ratings 
+```
+
+## Step 3: 
+Copy the file Docker file to Dockerfile.orig 
+
+```
+sudo cp Dockerfile Dockerfile.orig 
+```
+
+## Step 4: 
+Edit the file Dockerfile 
+
+```
+sudo vi Dockerfile 
+```
+
+And add the following line: 
+
+```
+ENV INSTANA_SERVICE_NAME=rs-ratings-<your last name> 
+```
+
+## Step 5: 
+Navigate back up to the robot-shop directory. 
+
+```
+cd /home/ubuntu/robot-shop/ 
+```
+
+## Step 6: 
+Execute: docker-compose build ratings 
+
+```
+sudo docker-compose build ratings
+```
+
+## Step 7: 
+Execute: docker-compose up -d ratings 
+
+```
+sudo docker-compose up -d ratings 
+```
+
+## Step 8: 
+In the UI, find your service in your Application Perspective and verify the new name. 
+
+Click Application, then Services, and lastly verify the name. 
+
+![Lab 7](images/lab7.1.png)
